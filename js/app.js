@@ -54,6 +54,31 @@ function addIntoCart(course){
     `;
 
     shoppingCartContent.appendChild(row);
+
+    saveIntoStorage(course);
+}
+
+function saveIntoStorage(course){
+    let courses = getCourseFromStorage();
+
+    courses.push(course);
+
+    localStorage.setItem('courses', JSON.stringify(courses));
+
+
+
+}
+
+function getCourseFromStorage(){
+    let courses;
+
+    if(localStorage.getItem('courses')===null){
+        courses = [];
+    }else{
+        course = JSON.parse(localStorage.getItem('courses'));
+    }
+    return courses;
+
 }
 
 function removeCourse(e){
